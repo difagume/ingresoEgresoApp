@@ -4,11 +4,11 @@ export interface State {
     isLoading: boolean;
 }
 
-const initState: State = {
+const estadoInicial: State = {
     isLoading: false
 };
 
-export function uiReducer(state = initState, action: acciones): State {
+export function uiReducer(state = estadoInicial, action: acciones): State {
 
     switch (action.type) {
         case ACTIVAR_LOADING:

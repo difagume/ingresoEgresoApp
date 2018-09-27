@@ -27,7 +27,14 @@ export class AuthService {
   initAuthListener() {
     this.afAuth.authState
       .subscribe((fbUser: fromFirebase.User) => {
-        // console.log(fbUser);
+
+        if (fbUser) {
+          this.afDB.doc(`${fbUser.uid}/usuario`).valueChanges()
+            .subscribe(usuarioObj => {
+
+            });
+        }
+
       });
   }
 
