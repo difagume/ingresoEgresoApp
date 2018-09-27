@@ -9,7 +9,7 @@ import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
-import { SetUserAction } from './auth.actions';
+import { SetUserAction, ClearUserAction } from './auth.actions';
 import { User } from './user.model';
 
 @Injectable({
@@ -99,6 +99,7 @@ export class AuthService {
   logout() {
     this.router.navigate(['/login']);
     this.afAuth.auth.signOut();
+    this.store.dispatch(new ClearUserAction());
   }
 
   isAuth() {

@@ -1,4 +1,4 @@
-import { acciones, SET_USER } from './auth.actions';
+import { acciones, SET_USER, CLEAR_USER } from './auth.actions';
 import { User } from './user.model';
 
 export interface AuthState {
@@ -15,6 +15,11 @@ export function authReducer(state = estadoInicial, action: acciones): AuthState 
         case SET_USER:
             return {
                 user: { ...action.user }
+            };
+
+        case CLEAR_USER:
+            return {
+                user: null
             };
 
         default:
