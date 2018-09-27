@@ -4,16 +4,20 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromFirebase from 'firebase';
+import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
+import { SetUserAction } from './auth.actions';
 import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  private userSubscription: Subscription = new Subscription();
 
   constructor(private afAuth: AngularFireAuth,
     private router: Router,
@@ -29,15 +33,21 @@ export class AuthService {
       .subscribe((fbUser: fromFirebase.User) => {
 
         if (fbUser) {
-          this.afDB.doc(`${fbUser.uid}/usuario`).valueChanges()
-            .subscribe(usuarioObj => {
+
+          this.userSubscription = this.afDB.doc(`${fbUser.uid}/usuario`).valueChanges()
+            .subscribe((usuarioObj: any) => {
+
+              const newUser = new User(usuarioObj);
+              // sconsole.log(newUser);
+              this.store.dispatch(new SetUserAction(newUser));
 
             });
-        }
+        } else {
 
+          this.userSubscription.unsubscribe();
+        }
       });
   }
-
 
 
   crearUsuario(nombre: string, email: string, password: string) {
