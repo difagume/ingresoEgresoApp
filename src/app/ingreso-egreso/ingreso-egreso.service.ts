@@ -68,4 +68,14 @@ export class IngresoEgresoService {
       .collection('items').add({ ...ingresoEgreso });
   }
 
+  borrarIngresoEgreso(uid: string) {
+    let uidUsuario: string;
+    this.store.select('auth')
+      .subscribe(auth => uidUsuario = auth.user.uid)
+      .unsubscribe();
+
+    return this.afDB.doc(`${uidUsuario}/ingresos-egresos/items/${uid}`)
+      .delete();
+  }
+
 }
