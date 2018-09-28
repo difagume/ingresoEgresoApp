@@ -43,7 +43,7 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ActivarLoadingAction());
 
     const ingresoEgreso = new IngresoEgreso({ ...this.forma.value, tipo: this.tipo });
-    console.log(ingresoEgreso);
+    // console.log(ingresoEgreso);
 
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
       .then(() => {
