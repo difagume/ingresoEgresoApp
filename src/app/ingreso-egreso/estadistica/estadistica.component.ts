@@ -17,6 +17,9 @@ export class EstadisticaComponent implements OnInit {
   cuantosIngresos: number;
   cuantosEgresos: number;
 
+  public doughnutChartLabels: string[] = ['Egresos', 'Ingresos'];
+  public doughnutChartData: number[] = [];
+
   subscription: Subscription = new Subscription();
 
   constructor(private store: Store<AppState>) { }
@@ -47,6 +50,8 @@ export class EstadisticaComponent implements OnInit {
       }
 
     });
+
+    this.doughnutChartData = [this.egresos, this.ingresos];
   }
 
 }
