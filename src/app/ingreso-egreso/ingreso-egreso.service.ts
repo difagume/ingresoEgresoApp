@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { AppState } from '../app.reducer';
-import { SetItemsAction } from './ingreso-egreso.actions';
+import { SetItemsAction, UnsetItemsAction } from './ingreso-egreso.actions';
 import { IngresoEgreso } from './ingreso-egreso.model';
-import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,8 @@ export class IngresoEgresoService {
   cancelarSubscriptions() {
     this.ingresoEgresoListenerSubscription.unsubscribe();
     this.ingresoEgresoItemsSubscription.unsubscribe();
+
+    this.store.dispatch(new UnsetItemsAction());
   }
 
 

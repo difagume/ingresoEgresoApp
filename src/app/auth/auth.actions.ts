@@ -12,8 +12,6 @@ export class SetUserAction implements Action {
 
 export class ClearUserAction implements Action {
     readonly type = CLEAR_USER;
-
-    constructor(public user: User) { }
 }
 
 export type acciones = SetUserAction | ClearUserAction;
