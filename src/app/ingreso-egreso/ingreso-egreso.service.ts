@@ -17,9 +17,7 @@ export class IngresoEgresoService {
     let uidUsuario: string;
 
     this.store.select('auth')
-      .subscribe(auth => {
-        uidUsuario = auth.user.uid;
-      });
+      .subscribe(auth => uidUsuario = auth.user.uid);
 
     return this.afDB.doc(`${uidUsuario}/ingresos-egresos`)
       .collection('items').add({ ...ingresoEgreso });
