@@ -3,10 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import swal from 'sweetalert2';
-import { AppState } from '../app.reducer';
 import { ActivarLoadingAction, DesactivarLoadingAction } from '../shared/ui.actions';
 import { IngresoEgreso } from './ingreso-egreso.model';
+import { AppState } from './ingreso-egreso.reducer';
 import { IngresoEgresoService } from './ingreso-egreso.service';
+
 
 @Component({
   selector: 'app-ingreso-egreso',
@@ -43,7 +44,6 @@ export class IngresoEgresoComponent implements OnInit, OnDestroy {
     this.store.dispatch(new ActivarLoadingAction());
 
     const ingresoEgreso = new IngresoEgreso({ ...this.forma.value, tipo: this.tipo });
-    // console.log(ingresoEgreso);
 
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
       .then(() => {
