@@ -26,3 +26,12 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 # ingresoEgresoApp
+
+
+# Generar componentes para producción
+ng build --prod
+firebase deploy
+https://ingreso-egreso-app-4c06a.firebaseapp.com/
+
+# Firebase Hosting - documentacion
+https://firebase.google.com/docs/hosting/quickstart
