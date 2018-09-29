@@ -16,9 +16,7 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
 import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { OrdenarIngresoEgresoPipe } from './ingreso-egreso/ordenar-ingreso-egreso.pipe';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -27,14 +25,12 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
         IngresoEgresoComponent,
         EstadisticaComponent,
         DetalleComponent,
-        FooterComponent,
-        NavbarComponent,
-        SidebarComponent,
         OrdenarIngresoEgresoPipe
     ],
     imports: [
         BrowserModule,
         AuthModule,
+        SharedModule,
         AppRoutingModule,
         ReactiveFormsModule,
         AngularFireModule.initializeApp(environment.firebase),
